@@ -22,6 +22,10 @@ const sendMessage = async(req,res) =>{
             {path:'chat'},
         ])
 
+        // Socket IO
+        const io = req.app.get('io');
+        io.to(chatId).emit('newMessaege', populateMessage);
+
         res.status(200).json({success:true, message:"Message Send Successfully", populateMessage});
     }
     catch(err){
