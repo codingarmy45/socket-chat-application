@@ -3,7 +3,7 @@ const socketIO = require('socket.io')
 const socketIOfunc = (server, app) => {
     const io = socketIO(server, {
         cors: {
-            origin: 'http://localhost:3000',
+            origin: 'https://studious-lamp-px5qv9gjjv9hjwq-5173.app.github.dev',
             methods: ['GET', 'POST']
         }
     })

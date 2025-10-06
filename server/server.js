@@ -9,7 +9,7 @@ const chatRouter = require('./routes/chat.router.js')
 const messageRouter = require('./routes/message.router.js')
 
 require('dotenv').config();
-// const cors = require('cors');
+const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
@@ -20,6 +20,10 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({
+    origin:"https://studious-lamp-px5qv9gjjv9hjwq-5173.app.github.dev",
+    credentials:true
+}))
 socketIOfunc(server, app);
 
 

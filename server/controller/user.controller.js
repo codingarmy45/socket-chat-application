@@ -5,9 +5,9 @@ require('dotenv').config();
 
 const Signup = async(req,res) =>{
     try{
-        const {name, email, password, avatar} = req.body;
+        const {userName, email, password} = req.body;
 
-        if(!name || !email || !password || !avatar){
+        if(!userName || !email || !password){
             return res.status(500).json({success:false, message:"Please enter all required fields"});
         }
 
@@ -21,10 +21,9 @@ const Signup = async(req,res) =>{
         }
 
         const newUser = new User({
-            name,
+            userName,
             email,
             password:hashedPassword,
-            avatar
         })
 
         await newUser.save();
@@ -33,7 +32,7 @@ const Signup = async(req,res) =>{
     }
     catch(err){
         console.log('Error in signup controller', err.message);
-        res.status(500).json({success:false, message:'Internal server error'});
+        res.status(500).json({success:false, message:'Internal server error', error: err.message});
     }
 }
 
